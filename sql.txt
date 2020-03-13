@@ -1,0 +1,12 @@
+use myblog;
+-- show tables; 
+-- insert into users(username,`password`,realname) values('lisi','123','李四');
+-- select * from users;
+-- select id,username from users;
+-- select * from users where username='zhangsan' or `password`='123'
+-- select * from users where username like '%zhang%'
+-- select * from users where password like '%1%' order by id desc
+update users set realname='李四1' where username='lisi';
+-- delete from users where username='lisi'
+SELECT * FROM USERS WHERE STATUS=1;
+UPDATE USERS SET STATUS = 1 WHERE USERNAME='lisi'
