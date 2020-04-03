@@ -1,13 +1,15 @@
-const {exec} = require('../db/mysql')
+const {exec,escape} = require('../db/mysql')
 
 const getList = (author, keyword) => {
     // where 1=1起到占位作用
+    let author = escape(author)
+    let keyword = escape(keyword)
     let sql = `select * from blogs where 1=1 `
     if(author){
-        sql+=`and author='${author}'`
+        sql+=`and author=${author}`
     }
     if(keyword){
-        sql+=`and title like '%${keyword}%'`
+        sql+=`and title like %${keyword}%`
     }
     sql+='order by createtime desc';
     return exec(sql)

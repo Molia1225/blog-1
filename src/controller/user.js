@@ -1,10 +1,14 @@
-const {exec} = require('../db/mysql')
+const {exec,escape} = require('../db/mysql')
+const {genPassword} = require('../utils/cryp')
 
-const loginCheck = (username,password)=>{
-    const sql = `select username ,realname from users where username='${username}' and password='${password}';`
+const login = (username,password)=>{
+    username = escape(username)
+    password = genPassword(password)
+    password = escape(password)
+    const sql = `select username ,realname from users where username=${username} and password=${password};`
     return exec(sql).then(rows=>rows[0]||{})
 }
 
 module.exports={
-    loginCheck
+    login
 }
